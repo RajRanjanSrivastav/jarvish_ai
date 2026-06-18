@@ -12,6 +12,7 @@ export const getCurrentUser = async (req: any, res: any) => {
   }
 };
 
-export const saveAssistant = async(req:any,res:any) => {
-
-}
+export const saveAssistant = async (req: any, res: any) => {
+  try {
+  } catch (error) {}
+};

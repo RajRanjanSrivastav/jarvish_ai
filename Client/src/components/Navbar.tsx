@@ -2,13 +2,10 @@ import React, { useState } from "react";
 import { Outlet, NavLink, Link, useNavigate } from "react-router-dom";
 import { FiMenu, FiX, FiLogOut, FiLayers, FiCreditCard } from "react-icons/fi";
 import axios from "axios";
+import type {User} from '../types'
 
 // Define the User interface for strict type safety
-export interface User {
-  name: string;
-  assistantName: string;
-  plan: string;
-}
+
 
 interface NavbarProps {
   user: User | null;

@@ -1,32 +1,45 @@
 import { genToken } from "../Configs/token.js";
 import User from "../Models/user.model.js";
 
-export const googlAuth = async (req: any, res: any) => {
+export const googleAuth = async (req: any, res: any) => {
   try {
     const { name, email } = req.body;
+
+    console.log("Google user:", name, email);
+
     if (!name || !email) {
-      return res.status(400).json({ message: "Name and email are required" });
+      return res.status(400).json({
+        message: "Name and email are required",
+      });
     }
 
     let user = await User.findOne({ email });
+
     if (!user) {
       user = await User.create({
         name,
         email,
       });
     }
+
     const token = await genToken(user._id);
 
     res.cookie("token", token, {
-      httpoOnly: true,
+      httpOnly: true,
       secure: false,
-      sameSite: "strict",
+      sameSite: "lax",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    return res.status(200).json(user);
+    return res.status(200).json({
+      user,
+    });
   } catch (error) {
-    return res.status(500).json({ message: `Google auth error ${error}` });
+    console.error("Google auth error:", error);
+
+    return res.status(500).json({
+      message: "Google auth error",
+    });
   }
 };
 

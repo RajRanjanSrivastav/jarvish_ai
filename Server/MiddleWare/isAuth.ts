@@ -2,11 +2,11 @@ import jwt, { type JwtPayload } from "jsonwebtoken";
 interface UserPayload extends JwtPayload {
   userId: string;
 }
- 
+
 export const isAuth = async (req: any, res: any, next: any) => {
   try {
-    const token = req.cookies.token;
-    console.log("token : ", token.value)
+    const token = req.cookies?.token;
+    console.log("token getting or not: ", token);
 
     if (!token) {
       return res.status(400).json({ message: "User does not have token" });

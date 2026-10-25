@@ -1,35 +1,212 @@
-
 /* =========================================================
-   JARVISH AI — PREMIUM CHAT WIDGET
+   JARVISH AI — ORB & MULTI-THEME VOICE WIDGET
+   Matches AssistantPreview.tsx (Light, Glass, Dark, Neon, Retro)
    Shadow DOM friendly • Responsive • Accessible
    ========================================================= */
 
 :host {
   all: initial;
 
-  --jw-primary: #5b5ce2;
-  --jw-primary-hover: #4849cb;
-  --jw-primary-soft: #eeeeff;
-  --jw-accent: #8b5cf6;
+  /* Default: Light Theme Tokens */
+  --jw-bg: #ffffff;
+  --jw-backdrop: none;
+  --jw-overlay: radial-gradient(circle at top, rgba(99, 102, 241, 0.09), transparent 55%);
+  --jw-card-border: rgba(226, 232, 240, 0.85);
+  --jw-card-shadow: 0 24px 60px rgba(15, 23, 42, 0.14), 0 4px 16px rgba(15, 23, 42, 0.06);
 
-  --jw-text: #172033;
-  --jw-text-muted: #697386;
-  --jw-border: #e8eaf2;
-  --jw-surface: #ffffff;
-  --jw-surface-soft: #f7f8fc;
-  --jw-user-text: #ffffff;
+  --jw-orb-gradient: linear-gradient(45deg, #818cf8, #22d3ee, #2dd4bf);
+  --jw-text: #0f172a;
+  --jw-sub: #64748b;
+  --jw-listening: #10b981;
+  --jw-wave: #10b981;
+  --jw-wave-glow: none;
+
+  --jw-badge-bg: rgba(15, 23, 42, 0.04);
+  --jw-badge-border: rgba(15, 23, 42, 0.08);
+
+  --jw-msg-bot-bg: #f8fafc;
+  --jw-msg-bot-border: #e2e8f0;
+  --jw-msg-bot-text: #0f172a;
+  --jw-msg-user-bg: linear-gradient(135deg, #4f46e5, #0d9488);
+  --jw-msg-user-text: #ffffff;
+
+  --jw-input-bg: #f8fafc;
+  --jw-input-border: #e2e8f0;
+  --jw-input-focus-bg: #ffffff;
+  --jw-input-focus-border: #6366f1;
+  --jw-placeholder: #94a3b8;
+
+  --jw-btn-bg: #4f46e5;
+  --jw-btn-text: #ffffff;
+  --jw-btn-border: transparent;
+  --jw-btn-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+
+  --jw-font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --jw-title-transform: none;
+  --jw-title-tracking: -0.02em;
 
   --jw-position-left: auto;
   --jw-position-right: 24px;
 
   color-scheme: light;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--jw-font);
   font-size: 14px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
+
+/* =========================================================
+   DYNAMIC THEME DEFINITIONS (From AssistantPreview.tsx)
+   ========================================================= */
+
+/* 1. GLASSMORPHISM THEME */
+:host(.jw-theme-glass) {
+  --jw-bg: rgba(255, 255, 255, 0.72);
+  --jw-backdrop: blur(24px);
+  --jw-overlay: radial-gradient(circle at top, rgba(20, 184, 166, 0.15), transparent 55%);
+  --jw-card-border: rgba(255, 255, 255, 0.65);
+  --jw-card-shadow: 0 20px 50px rgba(31, 38, 135, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+
+  --jw-orb-gradient: linear-gradient(45deg, #6366f1, #a855f7, #2dd4bf);
+  --jw-text: #0f172a;
+  --jw-sub: #64748b;
+  --jw-listening: #0d9488;
+  --jw-wave: #14b8a6;
+
+  --jw-msg-bot-bg: rgba(255, 255, 255, 0.68);
+  --jw-msg-bot-border: rgba(255, 255, 255, 0.8);
+  --jw-msg-user-bg: linear-gradient(90deg, #4f46e5, #14b8a6);
+
+  --jw-input-bg: rgba(255, 255, 255, 0.6);
+  --jw-input-border: rgba(255, 255, 255, 0.85);
+  --jw-input-focus-bg: rgba(255, 255, 255, 0.92);
+  --jw-input-focus-border: #6366f1;
+
+  --jw-btn-bg: linear-gradient(90deg, #4f46e5, #14b8a6);
+  --jw-btn-text: #ffffff;
+}
+
+/* 2. DARK THEME */
+:host(.jw-theme-dark) {
+  color-scheme: dark;
+
+  --jw-bg: #020617;
+  --jw-backdrop: none;
+  --jw-overlay: radial-gradient(circle at top, rgba(99, 102, 241, 0.25), transparent 60%);
+  --jw-card-border: #1e293b;
+  --jw-card-shadow: 0 28px 70px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.04);
+
+  --jw-orb-gradient: linear-gradient(45deg, #22d3ee, #6366f1, #a855f7);
+  --jw-text: #ffffff;
+  --jw-sub: #94a3b8;
+  --jw-listening: #22d3ee;
+  --jw-wave: #22d3ee;
+
+  --jw-badge-bg: rgba(241, 245, 249, 0.06);
+  --jw-badge-border: rgba(248, 250, 252, 0.1);
+
+  --jw-msg-bot-bg: #0f172a;
+  --jw-msg-bot-border: #1e293b;
+  --jw-msg-bot-text: #f1f5f9;
+  --jw-msg-user-bg: linear-gradient(90deg, #06b6d4, #6366f1);
+
+  --jw-input-bg: #0f172a;
+  --jw-input-border: #1e293b;
+  --jw-input-focus-bg: #0f172a;
+  --jw-input-focus-border: #06b6d4;
+  --jw-placeholder: #64748b;
+
+  --jw-btn-bg: linear-gradient(90deg, #06b6d4, #6366f1);
+  --jw-btn-text: #ffffff;
+  --jw-btn-shadow: 0 0 20px rgba(6, 182, 212, 0.22);
+}
+
+/* 3. NEON CYBERPUNK THEME */
+:host(.jw-theme-neon) {
+  color-scheme: dark;
+
+  --jw-bg: #0a0a0a;
+  --jw-backdrop: none;
+  --jw-overlay: radial-gradient(circle at top, rgba(236, 72, 153, 0.16), transparent 55%);
+  --jw-card-border: rgba(217, 70, 239, 0.35);
+  --jw-card-shadow: 0 0 28px rgba(236, 72, 153, 0.16), 0 24px 60px rgba(0, 0, 0, 0.8);
+
+  --jw-orb-gradient: linear-gradient(45deg, #d946ef, #9333ea, #22d3ee);
+  --jw-text: #ffffff;
+  --jw-sub: #e879f9;
+  --jw-listening: #22d3ee;
+  --jw-wave: #22d3ee;
+  --jw-wave-glow: 0 0 10px rgba(34, 211, 238, 0.65);
+
+  --jw-badge-bg: rgba(217, 70, 239, 0.08);
+  --jw-badge-border: rgba(217, 70, 239, 0.3);
+
+  --jw-msg-bot-bg: rgba(23, 23, 23, 0.9);
+  --jw-msg-bot-border: rgba(217, 70, 239, 0.28);
+  --jw-msg-bot-text: #22d3ee;
+  --jw-msg-user-bg: rgba(217, 70, 239, 0.18);
+  --jw-msg-user-text: #f0abfc;
+
+  --jw-input-bg: rgba(23, 23, 23, 0.85);
+  --jw-input-border: #262626;
+  --jw-input-focus-bg: #171717;
+  --jw-input-focus-border: #d946ef;
+  --jw-placeholder: #525252;
+
+  --jw-btn-bg: transparent;
+  --jw-btn-text: #e879f9;
+  --jw-btn-border: rgba(217, 70, 239, 0.6);
+  --jw-btn-shadow: 0 0 12px rgba(236, 72, 153, 0.25);
+
+  --jw-font: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --jw-title-tracking: 0.04em;
+}
+
+/* 4. RETRO TERMINAL THEME */
+:host(.jw-theme-retro) {
+  color-scheme: dark;
+
+  --jw-bg: #0b0f08;
+  --jw-backdrop: none;
+  --jw-overlay: radial-gradient(circle at top, rgba(34, 197, 94, 0.1), transparent 55%);
+  --jw-card-border: rgba(20, 83, 45, 0.7);
+  --jw-card-shadow: inset 0 0 16px rgba(0, 255, 0, 0.06), 0 24px 60px rgba(0, 0, 0, 0.85);
+
+  --jw-orb-gradient: linear-gradient(45deg, #22c55e, #059669, #166534);
+  --jw-text: #4ade80;
+  --jw-sub: rgba(22, 163, 74, 0.85);
+  --jw-listening: #4ade80;
+  --jw-wave: #22c55e;
+
+  --jw-badge-bg: rgba(5, 46, 22, 0.5);
+  --jw-badge-border: rgba(34, 197, 94, 0.25);
+
+  --jw-msg-bot-bg: #060805;
+  --jw-msg-bot-border: rgba(20, 83, 45, 0.75);
+  --jw-msg-bot-text: #4ade80;
+  --jw-msg-user-bg: rgba(20, 83, 45, 0.45);
+  --jw-msg-user-text: #86efac;
+
+  --jw-input-bg: #060805;
+  --jw-input-border: #052e16;
+  --jw-input-focus-bg: #060805;
+  --jw-input-focus-border: #16a34a;
+  --jw-placeholder: #14532d;
+
+  --jw-btn-bg: rgba(5, 46, 22, 0.55);
+  --jw-btn-text: #4ade80;
+  --jw-btn-border: rgba(34, 197, 94, 0.35);
+  --jw-btn-shadow: none;
+
+  --jw-font: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --jw-title-transform: uppercase;
+  --jw-title-tracking: 0.1em;
+}
+
+/* =========================================================
+   BASE RESET
+   ========================================================= */
 
 *,
 *::before,
@@ -48,13 +225,11 @@ button {
 
 .jw-root {
   color: var(--jw-text);
-  font-family: inherit;
-  font-size: 14px;
-  line-height: 1.5;
+  font-family: var(--jw-font);
 }
 
 /* =========================================================
-   CHAT WINDOW
+   CHAT PANEL CONTAINER
    ========================================================= */
 
 .jw-panel {
@@ -62,40 +237,38 @@ button {
   z-index: 2147483000;
   right: var(--jw-position-right);
   left: var(--jw-position-left);
-  bottom: 100px;
+  bottom: 98px;
 
   display: flex;
   flex-direction: column;
 
-  width: 390px;
-  height: min(640px, calc(100vh - 124px));
-  height: min(640px, calc(100dvh - 124px));
+  width: 380px;
+  max-height: min(630px, calc(100dvh - 120px));
   max-width: calc(100vw - 32px);
-  min-height: 300px;
+
+  padding: 22px;
+  border-radius: 24px;
+  border: 1px solid var(--jw-card-border);
+  background: var(--jw-bg);
+  backdrop-filter: var(--jw-backdrop);
+  -webkit-backdrop-filter: var(--jw-backdrop);
+  box-shadow: var(--jw-card-shadow);
 
   overflow: hidden;
   isolation: isolate;
 
-  border: 1px solid rgba(226, 229, 240, 0.9);
-  border-radius: 24px;
-  background: var(--jw-surface);
-
-  box-shadow:
-    0 32px 90px rgba(20, 25, 55, 0.16),
-    0 10px 30px rgba(20, 25, 55, 0.08),
-    0 0 0 1px rgba(255, 255, 255, 0.75);
-
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-
-  transform: translateY(16px) scale(0.97);
+  transform: translateY(16px) scale(0.96);
   transform-origin: bottom right;
 
   transition:
-    opacity 220ms ease,
-    transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    visibility 220ms ease;
+    opacity 240ms ease,
+    transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    visibility 240ms ease,
+    background 350ms ease,
+    border-color 350ms ease;
 }
 
 :host([data-position="bottom-left"]) .jw-panel {
@@ -109,68 +282,42 @@ button {
   transform: translateY(0) scale(1);
 }
 
+.jw-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--jw-overlay);
+  pointer-events: none;
+}
+
 /* =========================================================
-   HEADER
+   TOP STATS BAR (Matches AssistantPreview Header)
    ========================================================= */
 
 .jw-header {
-  position: relative;
   display: flex;
-  flex: 0 0 auto;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-
-  padding: 20px 19px;
-
-  color: #ffffff;
-  background:
-    radial-gradient(
-      ellipse at 100% 0%,
-      rgba(255, 255, 255, 0.2),
-      transparent 48%
-    ),
-    linear-gradient(125deg, #4849c9 0%, #6366e8 52%, #7957dc 100%);
-}
-
-.jw-header::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.18);
+  gap: 10px;
+  margin-bottom: 14px;
+  flex-shrink: 0;
 }
 
 .jw-brand {
   display: flex;
-  min-width: 0;
   align-items: center;
-  gap: 12px;
+  gap: 11px;
+  min-width: 0;
 }
 
-.jw-avatar {
-  position: relative;
-  display: grid;
-  width: 44px;
-  height: 44px;
-  flex: 0 0 44px;
-  place-items: center;
-
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 15px;
-
-  background: rgba(255, 255, 255, 0.16);
-  color: #ffffff;
-  font-size: 21px;
-
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.16),
-    0 4px 12px rgba(31, 30, 94, 0.12);
-
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+.jw-status-dot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  border-radius: 999px;
+  background: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+  animation: jw-pulse 2s infinite ease-in-out;
 }
 
 .jw-heading {
@@ -178,287 +325,417 @@ button {
 }
 
 .jw-title {
-  overflow: hidden;
-  color: #ffffff;
-  font-size: 15px;
+  margin: 0;
+  font-size: 14px;
   font-weight: 700;
-  line-height: 1.35;
-  letter-spacing: -0.2px;
-  text-overflow: ellipsis;
+  color: var(--jw-text);
+  text-transform: var(--jw-title-transform);
+  letter-spacing: var(--jw-title-tracking);
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.jw-status {
+.jw-subtitle {
+  margin: 1px 0 0;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--jw-sub);
+  opacity: 0.85;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.jw-header-actions {
   display: flex;
   align-items: center;
-  gap: 7px;
-  margin-top: 5px;
-
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1px;
+  gap: 8px;
 }
 
-.jw-status-dot {
-  width: 7px;
-  height: 7px;
-  flex: 0 0 7px;
-  border-radius: 50%;
-  background: #86efac;
-  box-shadow: 0 0 0 3px rgba(134, 239, 172, 0.14);
+.jw-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--jw-sub);
+  background: var(--jw-badge-bg);
+  border: 1px solid var(--jw-badge-border);
+}
+
+.jw-badge-icon {
+  width: 12px;
+  height: 12px;
 }
 
 .jw-close {
   display: grid;
-  width: 36px;
-  height: 36px;
-  flex: 0 0 36px;
   place-items: center;
+  width: 28px;
+  height: 28px;
   padding: 0;
-
-  border: 1px solid transparent;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  border-radius: 9px;
+  border: 1px solid var(--jw-badge-border);
+  background: var(--jw-badge-bg);
+  color: var(--jw-sub);
   cursor: pointer;
-
-  transition:
-    background 160ms ease,
-    border-color 160ms ease,
-    transform 160ms ease;
+  transition: all 150ms ease;
 }
 
 .jw-close:hover {
-  border-color: rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.2);
+  color: var(--jw-text);
+  transform: scale(1.05);
 }
 
-.jw-close:active {
-  transform: scale(0.94);
-}
-
-.jw-close svg,
-.jw-send svg,
-.jw-launcher svg {
-  display: block;
-  width: 20px;
-  height: 20px;
+.jw-close svg {
+  width: 15px;
+  height: 15px;
   fill: currentColor;
 }
 
 /* =========================================================
-   MESSAGES
+   CORE FLUID GLOWING ORB & EQUALIZER STAGE
+   ========================================================= */
+
+.jw-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 12px 0 10px;
+  flex-shrink: 0;
+}
+
+.jw-orb-trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 108px;
+  height: 108px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+.jw-orb-ping {
+  position: absolute;
+  width: 104px;
+  height: 104px;
+  border-radius: 999px;
+  background: var(--jw-orb-gradient);
+  filter: blur(12px);
+  opacity: 0.08;
+  transform: scale(0.75);
+  transition: all 500ms ease;
+}
+
+.jw-orb-pulse {
+  position: absolute;
+  width: 88px;
+  height: 88px;
+  border-radius: 999px;
+  background: var(--jw-orb-gradient);
+  filter: blur(5px);
+  opacity: 0.28;
+  transform: scale(0.9);
+  transition: all 500ms ease;
+}
+
+.jw-orb-core {
+  position: relative;
+  width: 62px;
+  height: 62px;
+  border-radius: 999px;
+  background: var(--jw-orb-gradient);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+  transform: scale(1);
+  transition: transform 350ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.jw-orb-trigger:hover .jw-orb-core {
+  transform: scale(1.06);
+}
+
+/* Active Listening or Speaking States on Orb */
+.jw-voice-active .jw-orb-ping {
+  opacity: 0.25;
+  transform: scale(1.1);
+  animation: jw-ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.jw-voice-active .jw-orb-pulse {
+  opacity: 0.42;
+  transform: scale(1.04);
+  animation: jw-pulse 1.8s ease-in-out infinite;
+}
+
+.jw-voice-active .jw-orb-core {
+  transform: scale(1.07);
+}
+
+/* Responsive Frequency Wavebars */
+.jw-wave-container {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 14px;
+}
+
+.jw-wave-bar {
+  width: 2.5px;
+  border-radius: 999px;
+  background: var(--jw-wave);
+  box-shadow: var(--jw-wave-glow);
+  transition: height 160ms ease, opacity 200ms ease;
+}
+
+/* Captions Feedback Block */
+.jw-caption-box {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 10px;
+  margin-top: 6px;
+}
+
+.jw-caption {
+  margin: 0;
+  font-size: 11.5px;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--jw-sub);
+  transition: color 250ms ease;
+}
+
+.jw-voice-active .jw-caption {
+  color: var(--jw-listening);
+}
+
+:host(.jw-theme-neon) .jw-voice-active .jw-caption {
+  text-shadow: 0 0 8px rgba(34, 211, 238, 0.6);
+}
+
+/* =========================================================
+   MESSAGES LOG (Compact & Theme-Harmonized)
    ========================================================= */
 
 .jw-messages {
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  align-items: stretch;
-  gap: 14px;
-  min-height: 0;
-
-  padding: 22px 17px;
-  overflow-x: hidden;
+  gap: 10px;
+  min-height: 90px;
+  max-height: 175px;
+  margin: 6px 0 12px;
+  padding: 6px 4px;
   overflow-y: auto;
-  overscroll-behavior: contain;
+  overflow-x: hidden;
   scrollbar-width: thin;
-  scrollbar-color: #d8dbea transparent;
-
-  background:
-    radial-gradient(
-      ellipse at 0% 0%,
-      rgba(99, 102, 241, 0.045),
-      transparent 45%
-    ),
-    var(--jw-surface-soft);
+  scrollbar-color: var(--jw-badge-border) transparent;
 }
 
 .jw-messages::-webkit-scrollbar {
-  width: 5px;
-}
-
-.jw-messages::-webkit-scrollbar-track {
-  background: transparent;
+  width: 4px;
 }
 
 .jw-messages::-webkit-scrollbar-thumb {
   border-radius: 99px;
-  background: #d8dbea;
+  background: var(--jw-badge-border);
 }
 
 .jw-message {
   position: relative;
-  max-width: 86%;
-  padding: 12px 15px;
-
+  max-width: 88%;
+  padding: 9px 13px;
+  border-radius: 14px;
+  font-size: 12px;
+  line-height: 1.55;
   overflow-wrap: anywhere;
   white-space: pre-wrap;
-
-  border-radius: 17px;
-  font-size: 13px;
-  line-height: 1.65;
-  letter-spacing: 0.01px;
-
-  animation: jw-message-enter 180ms ease both;
+  animation: jw-msg-in 180ms ease both;
 }
 
 .jw-message--bot {
   align-self: flex-start;
-
-  border: 1px solid #e9eaf2;
-  border-bottom-left-radius: 5px;
-
-  background: #ffffff;
-  color: var(--jw-text);
-
-  box-shadow:
-    0 2px 5px rgba(25, 35, 70, 0.025),
-    0 5px 15px rgba(25, 35, 70, 0.025);
+  border-bottom-left-radius: 4px;
+  background: var(--jw-msg-bot-bg);
+  border: 1px solid var(--jw-msg-bot-border);
+  color: var(--jw-msg-bot-text);
 }
 
 .jw-message--user {
   align-self: flex-end;
-
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-bottom-right-radius: 5px;
-
-  background: linear-gradient(135deg, var(--jw-primary), #7165e8);
-  color: var(--jw-user-text);
-
-  box-shadow: 0 5px 14px rgba(91, 92, 226, 0.16);
+  border-bottom-right-radius: 4px;
+  background: var(--jw-msg-user-bg);
+  border: 1px solid var(--jw-btn-border);
+  color: var(--jw-msg-user-text);
 }
 
 .jw-message--typing {
-  color: var(--jw-text-muted);
-  font-style: normal;
+  opacity: 0.75;
+  font-style: italic;
+}
+
+/* Speak Replay Button inside Bot Bubble */
+.jw-speak {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin-left: 8px;
+  padding: 0;
+  vertical-align: middle;
+  border-radius: 6px;
+  border: 1px solid var(--jw-badge-border);
+  background: var(--jw-badge-bg);
+  color: var(--jw-text);
+  cursor: pointer;
+  opacity: 0.75;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.jw-speak:hover {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.jw-speak svg {
+  width: 12px;
+  height: 12px;
 }
 
 /* =========================================================
-   ERROR MESSAGE
+   ERROR ALERT
    ========================================================= */
 
 .jw-error {
-  flex: 0 0 auto;
-  margin: 0;
-  padding: 10px 15px;
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 11px;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #f87171;
+}
 
-  border-top: 1px solid #fecaca;
-  background: #fff5f5;
-  color: #991b1b;
-
-  font-size: 12px;
-  line-height: 1.5;
+:host(.jw-theme-light) .jw-error,
+:host(.jw-theme-glass) .jw-error {
+  color: #b91c1c;
 }
 
 /* =========================================================
-   MESSAGE COMPOSER
+   ACTION BOX COMPOSER (Matches AssistantPreview Input Box)
    ========================================================= */
 
 .jw-composer {
+  flex-shrink: 0;
+}
+
+.jw-input-wrapper {
+  position: relative;
   display: flex;
-  flex: 0 0 auto;
   align-items: center;
-  gap: 9px;
-
-  padding: 14px 14px 10px;
-
-  border-top: 1px solid #eceef5;
-  background: #ffffff;
 }
 
 .jw-input {
-  display: block;
   width: 100%;
-  min-width: 0;
-  height: 46px;
-  padding: 0 16px;
-
-  appearance: none;
-  border: 1px solid #e2e5ef;
-  border-radius: 15px;
-  outline: none;
-
-  background: #f9faff;
+  height: 44px;
+  padding: 0 82px 0 15px;
+  border-radius: 13px;
+  border: 1px solid var(--jw-input-border);
+  background: var(--jw-input-bg);
   color: var(--jw-text);
+  font-size: 12px;
+  font-weight: 500;
+  outline: none;
+  transition: all 200ms ease;
+}
 
-  font-family: inherit;
-  font-size: 13px;
-  line-height: normal;
-
-  box-shadow: inset 0 1px 2px rgba(20, 25, 55, 0.015);
-
-  transition:
-    border-color 160ms ease,
-    background 160ms ease,
-    box-shadow 160ms ease;
+:host(.jw-theme-neon) .jw-input {
+  color: #22d3ee;
 }
 
 .jw-input::placeholder {
-  color: #9ba3b5;
-  opacity: 1;
-}
-
-.jw-input:hover:not(:disabled) {
-  border-color: #cbd0e3;
-  background: #ffffff;
+  color: var(--jw-placeholder);
 }
 
 .jw-input:focus {
-  border-color: var(--jw-primary);
-  background: #ffffff;
-  box-shadow: 0 0 0 4px rgba(91, 92, 226, 0.11);
+  background: var(--jw-input-focus-bg);
+  border-color: var(--jw-input-focus-border);
 }
 
-.jw-input:disabled {
-  cursor: not-allowed;
-  opacity: 0.65;
+.jw-composer-actions {
+  position: absolute;
+  right: 5px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.jw-mic,
+.jw-send {
+  display: grid;
+  place-items: center;
+  width: 33px;
+  height: 33px;
+  padding: 0;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: all 180ms ease;
+}
+
+.jw-mic {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--jw-sub);
+}
+
+.jw-mic:hover:not(:disabled) {
+  color: var(--jw-text);
+  background: var(--jw-badge-bg);
+}
+
+.jw-mic--listening {
+  color: #ffffff !important;
+  background: #ef4444 !important;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.5);
+  animation: jw-pulse 1.2s infinite;
 }
 
 .jw-send {
-  display: grid;
-  width: 46px;
-  height: 46px;
-  flex: 0 0 46px;
-  place-items: center;
-  padding: 0;
-
-  border: 0;
-  border-radius: 15px;
-
-  background: linear-gradient(135deg, var(--jw-primary), #7165e8);
-  color: #ffffff;
-
-  box-shadow: 0 4px 11px rgba(91, 92, 226, 0.22);
-  cursor: pointer;
-
-  transition:
-    transform 160ms ease,
-    background 160ms ease,
-    box-shadow 160ms ease,
-    opacity 160ms ease;
+  background: var(--jw-btn-bg);
+  color: var(--jw-btn-text);
+  border: 1px solid var(--jw-btn-border);
+  box-shadow: var(--jw-btn-shadow);
 }
 
 .jw-send:hover:not(:disabled) {
-  background: linear-gradient(135deg, var(--jw-primary-hover), #6254d6);
-  box-shadow: 0 6px 15px rgba(91, 92, 226, 0.3);
+  opacity: 0.92;
   transform: translateY(-1px);
 }
 
-.jw-send:active:not(:disabled) {
-  transform: scale(0.95);
+.jw-send:disabled,
+.jw-mic:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
-.jw-send:disabled {
-  cursor: wait;
-  opacity: 0.55;
-  box-shadow: none;
-}
-
+.jw-mic svg,
 .jw-send svg {
-  width: 19px;
-  height: 19px;
+  width: 15px;
+  height: 15px;
 }
 
 /* =========================================================
@@ -466,20 +743,15 @@ button {
    ========================================================= */
 
 .jw-footer {
-  flex: 0 0 auto;
-  padding: 2px 12px 12px;
-
-  background: #ffffff;
-  color: #9aa2b4;
-
-  font-size: 10px;
-  line-height: 1.5;
-  letter-spacing: 0.1px;
+  margin-top: 10px;
+  font-size: 9.5px;
   text-align: center;
+  color: var(--jw-sub);
+  opacity: 0.65;
 }
 
 /* =========================================================
-   FLOATING LAUNCHER
+   FLOATING LAUNCHER BUTTON
    ========================================================= */
 
 .jw-launcher {
@@ -490,56 +762,46 @@ button {
   bottom: 24px;
 
   display: grid;
-  width: 62px;
-  height: 62px;
   place-items: center;
+  width: 60px;
+  height: 60px;
   padding: 0;
-
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 22px;
-
-  background:
-    radial-gradient(
-      circle at 30% 20%,
-      rgba(255, 255, 255, 0.22),
-      transparent 55%
-    ),
-    linear-gradient(135deg, var(--jw-primary), #7861e9);
-
-  color: #ffffff;
-
-  box-shadow:
-    0 12px 28px rgba(91, 92, 226, 0.32),
-    0 4px 10px rgba(91, 92, 226, 0.15);
-
+  border-radius: 20px;
+  border: 1px solid var(--jw-card-border);
+  background: var(--jw-bg);
+  color: var(--jw-text);
+  box-shadow: var(--jw-card-shadow);
   cursor: pointer;
+  overflow: hidden;
+  transition: transform 200ms ease, border-radius 200ms ease;
+}
 
-  transition:
-    transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 180ms ease,
-    border-radius 180ms ease;
+.jw-launcher-orb {
+  position: absolute;
+  inset: 6px;
+  border-radius: 999px;
+  background: var(--jw-orb-gradient);
+  opacity: 0.85;
+  filter: blur(1px);
+  z-index: 0;
+  transition: transform 300ms ease;
 }
 
 .jw-launcher:hover {
   transform: translateY(-3px);
-  border-radius: 20px;
-  box-shadow:
-    0 16px 34px rgba(91, 92, 226, 0.36),
-    0 5px 12px rgba(91, 92, 226, 0.18);
 }
 
-.jw-launcher:active {
-  transform: scale(0.95);
+.jw-launcher:hover .jw-launcher-orb {
+  transform: scale(1.12);
 }
 
 .jw-launcher svg {
-  width: 25px;
-  height: 25px;
-}
-
-.jw-launcher-open,
-.jw-launcher-close {
-  transition: transform 180ms ease;
+  position: relative;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+  color: #ffffff;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
 }
 
 .jw-launcher-close {
@@ -555,7 +817,7 @@ button {
 }
 
 /* =========================================================
-   LOADING / UNAVAILABLE
+   LOADING & UNAVAILABLE NOTICES
    ========================================================= */
 
 .jw-loading,
@@ -564,41 +826,13 @@ button {
   right: 24px;
   bottom: 24px;
   z-index: 2147483001;
-
-  width: max-content;
-  max-width: min(320px, calc(100vw - 32px));
-  padding: 13px 16px;
-
-  border: 1px solid rgba(226, 229, 240, 0.95);
-  border-radius: 15px;
-
-  background: rgba(255, 255, 255, 0.96);
-  color: #334155;
-
-  box-shadow:
-    0 12px 35px rgba(15, 23, 42, 0.1),
-    0 2px 7px rgba(15, 23, 42, 0.04);
-
-  font: 13px/1.5 Inter, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
-
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-}
-
-/* =========================================================
-   ACCESSIBILITY
-   ========================================================= */
-
-.jw-launcher:focus-visible,
-.jw-close:focus-visible,
-.jw-send:focus-visible {
-  outline: 3px solid #a5b4fc;
-  outline-offset: 3px;
-}
-
-.jw-input:focus-visible {
-  outline: none;
+  padding: 11px 15px;
+  border-radius: 14px;
+  font-size: 12px;
+  background: var(--jw-bg);
+  color: var(--jw-text);
+  border: 1px solid var(--jw-card-border);
+  box-shadow: var(--jw-card-shadow);
 }
 
 .jw-sr-only {
@@ -607,327 +841,57 @@ button {
   height: 1px;
   padding: 0;
   margin: -1px;
-
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
-
   border: 0;
 }
 
 /* =========================================================
-   DARK THEME
+   KEYFRAME ANIMATIONS & MOBILE RESPONSIVENESS
    ========================================================= */
 
-:host(.jw-theme-dark) {
-  color-scheme: dark;
-
-  --jw-text: #f1f5f9;
-  --jw-text-muted: #a3afc2;
-  --jw-border: #334155;
-  --jw-surface: #111827;
-  --jw-surface-soft: #0b1220;
-}
-
-:host(.jw-theme-dark) .jw-panel {
-  border-color: #293548;
-  background: #111827;
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.025);
-}
-
-:host(.jw-theme-dark) .jw-messages {
-  background:
-    radial-gradient(
-      ellipse at 0% 0%,
-      rgba(99, 102, 241, 0.08),
-      transparent 50%
-    ),
-    #0b1220;
-
-  scrollbar-color: #475569 transparent;
-}
-
-:host(.jw-theme-dark) .jw-message--bot {
-  border-color: #293548;
-  background: #182235;
-  color: #e5eaf4;
-  box-shadow: none;
-}
-
-:host(.jw-theme-dark) .jw-composer,
-:host(.jw-theme-dark) .jw-footer {
-  border-color: #293548;
-  background: #111827;
-}
-
-:host(.jw-theme-dark) .jw-input {
-  border-color: #344158;
-  background: #182235;
-  color: #f1f5f9;
-  box-shadow: none;
-}
-
-:host(.jw-theme-dark) .jw-input::placeholder {
-  color: #8996ab;
-}
-
-:host(.jw-theme-dark) .jw-input:hover:not(:disabled),
-:host(.jw-theme-dark) .jw-input:focus {
-  border-color: #7778ed;
-  background: #1c2940;
-}
-
-:host(.jw-theme-dark) .jw-footer {
-  color: #8793a8;
-}
-
-:host(.jw-theme-dark) .jw-error {
-  border-color: #713737;
-  background: #321b23;
-  color: #fecaca;
-}
-
-:host(.jw-theme-dark) .jw-loading,
-:host(.jw-theme-dark) .jw-unavailable {
-  border-color: #334155;
-  background: rgba(17, 24, 39, 0.96);
-  color: #e2e8f0;
-}
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 480px) {
-  .jw-panel {
-    right: 12px;
-    left: 12px;
-    bottom: 84px;
-
-    width: auto;
-    max-width: none;
-    height: calc(100vh - 104px);
-    height: calc(100dvh - 104px);
-    min-height: 280px;
-    max-height: 720px;
-
-    border-radius: 22px;
-    transform-origin: bottom center;
-  }
-
-  .jw-header {
-    padding: 16px;
-  }
-
-  .jw-avatar {
-    width: 40px;
-    height: 40px;
-    flex-basis: 40px;
-    border-radius: 13px;
-  }
-
-  .jw-messages {
-    padding: 18px 13px;
-    gap: 12px;
-  }
-
-  .jw-message {
-    max-width: 90%;
-    padding: 11px 13px;
-  }
-
-  .jw-composer {
-    padding: 11px 11px 8px;
-  }
-
-  .jw-input {
-    height: 45px;
-    padding: 0 13px;
-  }
-
-  .jw-send {
-    width: 45px;
-    height: 45px;
-    flex-basis: 45px;
-  }
-
-  .jw-launcher {
-    right: 16px;
-    left: auto;
-    bottom: 16px;
-
-    width: 58px;
-    height: 58px;
-    border-radius: 20px;
-  }
-
-  :host([data-position="bottom-left"]) .jw-launcher {
-    right: auto;
-    left: 16px;
-  }
-
-  .jw-loading,
-  .jw-unavailable {
-    right: 16px;
-    bottom: 16px;
+@keyframes jw-ping {
+  75%, 100% {
+    transform: scale(1.38);
+    opacity: 0;
   }
 }
 
-/* Short screens, including mobile landscape */
-@media (max-height: 520px) and (min-width: 481px) {
-  .jw-panel {
-    bottom: 82px;
-    height: calc(100dvh - 100px);
-    min-height: 250px;
+@keyframes jw-pulse {
+  0%, 100% {
+    opacity: 1;
   }
-
-  .jw-header {
-    padding: 12px 16px;
-  }
-
-  .jw-messages {
-    padding-top: 12px;
-    padding-bottom: 12px;
+  50% {
+    opacity: 0.45;
   }
 }
 
-/* =========================================================
-   MOTION
-   ========================================================= */
-
-@keyframes jw-message-enter {
+@keyframes jw-msg-in {
   from {
     opacity: 0;
-    transform: translateY(5px);
+    transform: translateY(4px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .jw-panel,
-  .jw-launcher,
-  .jw-send,
-  .jw-close,
-  .jw-input,
-  .jw-message {
-    animation: none !important;
-    transition: none !important;
+@media (max-width: 480px) {
+  .jw-panel {
+    right: 12px;
+    left: 12px;
+    bottom: 88px;
+    width: auto;
+    max-width: none;
+    padding: 18px;
   }
-}
 
-
-/* button */
-
-/* Voice input */
-.jw-mic {
-  display: grid;
-  width: 46px;
-  height: 46px;
-  flex: 0 0 46px;
-  place-items: center;
-  padding: 0;
-
-  border: 1px solid #e2e5ef;
-  border-radius: 15px;
-  background: #ffffff;
-  color: var(--jw-primary);
-  cursor: pointer;
-
-  transition:
-    background 160ms ease,
-    color 160ms ease,
-    transform 160ms ease,
-    box-shadow 160ms ease;
-}
-
-.jw-mic svg {
-  width: 20px;
-  height: 20px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.jw-mic:hover {
-  background: var(--jw-primary-soft);
-}
-
-.jw-mic:active {
-  transform: scale(0.95);
-}
-
-.jw-mic:focus-visible {
-  outline: 3px solid #a5b4fc;
-  outline-offset: 3px;
-}
-
-.jw-mic--listening {
-  color: #ffffff;
-  background: #dc2626;
-  border-color: #dc2626;
-  box-shadow: 0 0 0 5px rgba(220, 38, 38, 0.12);
-  animation: jw-mic-pulse 1.4s ease-in-out infinite;
-}
-
-.jw-mic:disabled {
-  cursor: not-allowed;
-  opacity: 0.45;
-}
-
-@keyframes jw-mic-pulse {
-  50% {
-    box-shadow: 0 0 0 9px rgba(220, 38, 38, 0.04);
-  }
-}
-
-/* Speak/replay button on bot messages */
-.jw-speak {
-  display: inline-grid;
-  width: 28px;
-  height: 28px;
-  place-items: center;
-  margin-top: 7px;
-  padding: 0;
-
-  border: 1px solid #e8eaf2;
-  border-radius: 9px;
-  background: #ffffff;
-  color: var(--jw-primary);
-  cursor: pointer;
-}
-
-.jw-speak svg {
-  width: 15px;
-  height: 15px;
-  fill: currentColor;
-}
-
-.jw-speak:hover {
-  background: var(--jw-primary-soft);
-}
-
-:host(.jw-theme-dark) .jw-mic {
-  background: #182235;
-  border-color: #344158;
-  color: #c4b5fd;
-}
-
-:host(.jw-theme-dark) .jw-speak {
-  background: #182235;
-  border-color: #344158;
-  color: #c4b5fd;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .jw-mic--listening {
-    animation: none;
+  .jw-launcher {
+    right: 16px;
+    bottom: 16px;
+    width: 56px;
+    height: 56px;
   }
 }

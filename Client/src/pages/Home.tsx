@@ -120,7 +120,7 @@ const Home: React.FC<HomeProps> = ({ user }) => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className={`group bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 ${feature.hoverBorder} flex flex-col items-start`}
+              className={`group bg-white p-8 rounded-4xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 ${feature.hoverBorder} flex flex-col items-start`}
             >
               <div
                 className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${feature.bgColor} transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3`}

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Navbar from "./components/Navbar";
 import Builder from "./pages/Builder";
+import Billing from "./pages/Billing"
 import type { User } from './types';
 
 
@@ -53,6 +54,7 @@ const App = () => {
         <Route element={<Navbar user={user} setUser={setUser} />}>
           <Route path="/" element={<Home user={user} />} />
           <Route path="/builder" element={<Builder user={user} setUser={setUser} />} />
+          <Route path="/billing" element={<Billing user={user} setUser={setUser}/>} />
         </Route>
       </Route>
     </Routes>

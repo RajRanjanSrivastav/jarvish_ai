@@ -12,6 +12,7 @@ import {
   FiMic,
   FiCompass,
   FiCpu,
+  FiArrowLeft,
 } from "react-icons/fi";
 import {
   FiCode,
@@ -20,7 +21,6 @@ import {
 } from "react-icons/fi";
 import type { User } from '../types';
 
-
 interface BuilderProps {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
@@ -28,7 +28,7 @@ interface BuilderProps {
 
 interface PageRoute {
   name: string;
-  url: string;
+  path: string;
   keywords: string;
 }
 
@@ -54,6 +54,7 @@ const Builder: React.FC<BuilderProps> = ({ user, setUser }) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const [copied, setCopied] = useState(false);
+
 
   // A mock variable representing whether the user is in "edit mode" or not
   // const editAssistant = false; 
@@ -81,7 +82,7 @@ const Builder: React.FC<BuilderProps> = ({ user, setUser }) => {
     enableVoice: true,
     enableNavigation: true,
     geminiApiKey: "",
-    pages: [{ name: "Home", url: "/", keywords: "Home Back" }],
+    pages: [{ name: "Home", path: "/", keywords: "Home Back" }],
   });
 
   // Generic input handler
@@ -107,7 +108,7 @@ const Builder: React.FC<BuilderProps> = ({ user, setUser }) => {
   const addPage = () => {
     setFormData((prev) => ({
       ...prev,
-      pages: [...prev.pages, { name: "", url: "", keywords: "" }],
+      pages: [...prev.pages, { name: "", path: "", keywords: "" }],
     }));
   };
 
@@ -117,6 +118,28 @@ const Builder: React.FC<BuilderProps> = ({ user, setUser }) => {
       pages: prev.pages.filter((_, i) => i !== index),
     }));
   };
+
+  // fetch the edit data
+
+  const fetchUserData = async () => {
+    const res = await axios.get(`${API_BASE_URL}/api/user/getCurrentUser`, {
+      withCredentials: true,
+    })
+    const data = res.data;
+    console.log(res)
+    setFormData({
+      assistantName: data.assistantName,
+      businessName: data.businessName,
+      businessType: data.businessType,
+      businessDescription: data.businessDescription,
+      theme: data.theme,
+      tone: data.tone,
+      enableVoice: data.enableVoice,
+      enableNavigation: data.enableNavigation,
+      geminiApiKey: data.geminiApiKey,
+      pages: data.pages,
+    })
+  }
 
   // Submission Handler
   const handleSubmit = async (e: React.FormEvent) => {
@@ -149,10 +172,7 @@ const Builder: React.FC<BuilderProps> = ({ user, setUser }) => {
 
   return (
     <>
-
-
       {/* Setup Complete / Dashboard Section */}
-
 
       {user?.isSetupComplete && !editAssistant ? (
         <section className="px-4 sm:px-6 lg:px-8 py-12 max-w-5xl mx-auto relative z-20">
@@ -295,8 +315,8 @@ const Builder: React.FC<BuilderProps> = ({ user, setUser }) => {
           </div>
           <button
             type="button"
-            onClick={() => setEditAssistant(true)}
-            className="group flex items-center justify-center gap-2 text-sm font-bold text-white bg-linear-to-r from-indigo-500 to-teal-400  px-6 py-3 rounded-xl shadow-sm hover:shadow-md hover:shadow-indigo-500/25 hover:-translate-y-0.5 transition-all duration-300 active:scale-95 cursor-pointer"
+            onClick={() => { setEditAssistant(true); fetchUserData() }}
+            className="group flex items-center justify-center gap-2 ms-auto text-sm font-bold text-white bg-linear-to-r from-indigo-500 to-teal-400  px-6 py-3 rounded-xl shadow-sm hover:shadow-md hover:shadow-indigo-500/25 hover:-translate-y-0.5 transition-all duration-300 active:scale-95 cursor-pointer"
           >
             <FiPlus className="w-5 h-5 transition-transform duration-300 group-hover:rotate-90" />
             Edit Assistant
@@ -595,8 +615,8 @@ const Builder: React.FC<BuilderProps> = ({ user, setUser }) => {
                       />
                       <input
                         type="text"
-                        value={page.url}
-                        onChange={(e) => handlePageChange(index, "url", e.target.value)}
+                        value={page.path}
+                        onChange={(e) => handlePageChange(index, "path", e.target.value)}
                         placeholder="URL Path (e.g., /pricing)"
                         className="w-full sm:w-1/2 px-5 py-4 rounded-2xl border border-slate-200 bg-white text-slate-900 focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all font-medium font-mono text-sm shadow-sm placeholder:font-sans placeholder:text-base placeholder:text-slate-400"
                         required={formData.enableNavigation}
@@ -625,7 +645,15 @@ const Builder: React.FC<BuilderProps> = ({ user, setUser }) => {
 
               {/* Sticky Floating Submit Bar */}
               <div className="p-4 sm:p-6 flex justify-center">
-                <div className="w-full max-w-4xl flex justify-end">
+                <div className="w-full max-w-4xl flex justify-end gap-4">
+                  <button
+                    type="button"
+                    className="w-full sm:w-auto flex items-center justify-center gap-2 px-10 py-4 rounded-2xl border border-slate-400 bg-slate-100 text-slate-600 font-semibold cursor-pointer hover:bg-slate-200 hover:text-slate-800 transition-all shadow-xs hover:-translate-y-0.5 active:scale-98 dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+                    onClick={() => setEditAssistant(false)}
+                  >
+                    <FiArrowLeft className="w-5 h-5 transition-transform duration-200 group-hover:-translate-x-0.5" />
+                    Back
+                  </button>
                   <button
                     type="submit"
                     disabled={isSubmitting}
